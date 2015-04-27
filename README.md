@@ -40,9 +40,9 @@ Follow the instructions on the [MongoDB website](https://www.mongodb.org/downloa
 * [express](http://expressjs.com) : Fast, unopinionated, minimalist web framework
 * [body-parser](http://npmjs.com/body-parser) : Node.js body parsing middleware.
 * [debug](http://npmjs.com/debug) : small debugging utility
-* [mongodb](http://npmjs.com/mongodb)
-* [ejs](http://npmjs.com/ejs)
-* [moment]](http://npmjs.com/)
+* [mongojs](http://npmjs.com/mongojs) : Easy to use module that implements the mongo api
+* [ejs](http://npmjs.com/ejs) : Embedded JavaScript templates
+* [moment](http://npmjs.com/moment) : Parse, validate, manipulate, and display dates
 
 ###Install
 
