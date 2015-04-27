@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><%= title %></title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header"><%=title%></h1>
+          <h2><%=entries.length%> messages</h2>
+            <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Received at</th>
+                  <th>Device</th>
+                  <th>Message timestamp</th>
+                  <th>Station ID</th>
+                  <th>Average signal</th>
+                  <th>Rssi</th>
+                  <th>Data payload</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <% entries.forEach(function(entry){%>
+                  <tr>
+                    <td><%=entry.time ? moment(entry.time).fromNow() : 'N/A'%></td>
+                    <td><%=entry.payload.id%></td>
+                    <td><%=moment(entry.payload.time*1000).format()%></td>
+                    <td><%=entry.payload.station%></td>
+                    <td><%=entry.payload.avgSignal%></td>
+                    <td><%=entry.payload.rssi%></td>
+                    <td><strong><%=entry.payload.data%></strong></td>
+                  </tr>
+                <%})%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
