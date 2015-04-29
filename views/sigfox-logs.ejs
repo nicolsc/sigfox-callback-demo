@@ -38,8 +38,8 @@
                     <td><%=entry.payload.id%></td>
                     <td><%=moment(entry.payload.time*1000).format()%></td>
                     <td><%=entry.payload.station%></td>
-                    <td><%=entry.payload.avgSignal%></td>
-                    <td><%=entry.payload.rssi%></td>
+                    <td><%=entry.payload.avgSignal%> dB</td>
+                    <td><%=entry.payload.rssi%> dBm</td>
                     <td><strong><%=entry.payload.data%></strong></td>
                   </tr>
                 <%})%>
