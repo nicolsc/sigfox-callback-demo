@@ -46,13 +46,32 @@ app.get('/', function(req, res){
   db.find('calls', {path:'/sigfox', payload:{$exists:true}}, {sort:{time:-1}})
   .then(function(data){
     debug('%s items found', data.length);
-    res.render('sigfox-logs', {title:'SIGFOX messages', entries:data});
+    res.format({
+        /* JSON first */
+        json: function(){
+            res.json({entries:data});
+        },
+        html: function(){
+            res.render('sigfox-logs', {title:'SIGFOX messages', entries:data});        
+        },
+        default:function(){
+            res.status(406).send({err:'Invalid Accept header. This method only handles html & json'});
+        }
+    });
   })
   .catch(function(err){
-    debug('nope :(');
-    return res.status(500).render('error', {title:'An error occured while fetching messages', err:err});
+    res.format({
+      json: function(){
+          return res.json({err:'An error occured while fetching messages', details:err});
+      },
+      html: function(){
+            return res.status(500).render('error', {title:'An error occured while fetching messages', err:err});
+        },
+      default: function(){
+        res.status(406).send({err:'Invalid Accept header. This method only handles html & json'});
+      }
+    });
   });
-  
 });
 
 
