@@ -13,7 +13,7 @@ module.exports = function(req, res, next){
   //querystring ?
   if (req.query && Object.keys(req.query).length){
     Object.keys(req.query).forEach(function(key){
-      if (!entry.data[key]){
+      if (!entry.payload[key]){
         entry.payload[key] = req.query[key];  
       }
       else{
