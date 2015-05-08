@@ -105,18 +105,27 @@ A message from the future should now appear on your local dashboard
 
 ##Quick deploy on heroku
 
+
 _Note:_ You can deploy this demo application wherever suited. Heroku is just a quickstart example.
 
+
+###One-click deploy
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/nicolsc/sigfox-callback-demo/tree/master)
+
+###The command line way 
 
 * Make sure you have installed the [Heroku Toolbelt](https://toolbelt.heroku.com/)
 * Create an application : `heroku apps:create {whatever name}`. Documentation [here](https://devcenter.heroku.com/articles/creating-apps)
 * Deploy your code : `$ git push heroku master`
+
+###Set up your env
 * Add a [sandbox MongoLab add-on](https://elements.heroku.com/addons/mongolab#addon-docs) (free) : `$ heroku addons:add mongolab:sandbox`
 * Set the `DATABASE_URL`env var to the URL of your mongo lab db
 * `heroku config:get MONGOLAB_URI`
 * `$ heroku config:set DATABASE_URL={your mongolab URL}`
 
-All that remains to do is to set up your SIGFOX callback
+All that remains to do is to set up your SIGFOX callback on [the SIGFOX backend](https://backend.sigfox.com)
 
 
 ###How to set up a SIGFOX callback
