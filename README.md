@@ -137,7 +137,7 @@ All that remains to do is to set up your SIGFOX callback on [the SIGFOX backend]
 * Set your callback as following
   * Type: DATA UPLINK
   * Channel: URL
-  * Url syntax :   `http://{your URL}/sigfox?id={device}&time={time}&signal={signal}&station={station}&data={data}&avgSignal={avgSignal}&rssi={rssi}&lat={lat}&lng={lng}`
+  * Url syntax :   `http://{your URL}/sigfox?id={device}&time={time}&snr={snr}&station={station}&data={data}&avgSignal={avgSignal}&rssi={rssi}&lat={lat}&lng={lng}`
   * HTTP POST
   * _OK_
   
