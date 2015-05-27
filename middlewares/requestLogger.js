@@ -32,6 +32,7 @@ module.exports = function(req, res, next){
   })
   .catch(function(err){
     debug('Log err : %s', err);
-    return res.status(500).json({err:'Unable to log request', details:err.message});
+    //return res.status(500).json({err:'Unable to log request', details:err.message});
+    next();
   });
 };
