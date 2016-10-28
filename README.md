@@ -1,26 +1,28 @@
-#SIGFOX callback demo
+<p align="center"><img src ="http://www.sigfox.com/themes/custom/sigfox/images/logo-2016.svg" width="300"></p>
 
-##Purpose
+## Sigfox node.js callback demo
 
-* Logs the message sent by your SIGFOX objects
+### Purpose
+
+* Logs the message sent by your Sigfox objects
 * Display a table of received messages, with their unique id, data payload and relevant metadata
 
-This is a Node.js/Express application, with two routes :
+This is a Node.js/Express application, with two routes:
 
-* POST /sigfox to log a message
+* POST / sigfox to log a message
 * GET / to display the dashboard
 
 
-##How to install
+### Installation
 
-###Dependencies
+#### Dependencies
 
 Before installing the app itself, check that the main dependencies are installed on your system
 
-####Node
+##### Node.js
 
 This app relies on [io.js](http://iojs.org) v1.8.1, the [Node.js](http://nodejs.org) fork.  
-The main reason is that i like to try new stuff, including the ability to use some ES6 syntax :)
+The main reason is that I like to try new stuff, including the ability to use some ES6 syntax :)
 
 To install, the better is probably to use [nvm (Node version manager)](https://github.com/creationix/nvm) that will let you switch between version of Node.
 
@@ -30,12 +32,12 @@ $ nvm install v1.8.1
 $ nvm use v1.8.1
 ```
 
-####MongoDB
+##### MongoDB
 
 Follow the instructions on the [MongoDB website](https://www.mongodb.org/downloads).
 
 
-####Packages
+##### Packages
 
 * [express](http://expressjs.com) : Fast, unopinionated, minimalist web framework
 * [body-parser](http://npmjs.com/body-parser) : Node.js body parsing middleware.
@@ -44,7 +46,7 @@ Follow the instructions on the [MongoDB website](https://www.mongodb.org/downloa
 * [ejs](http://npmjs.com/ejs) : Embedded JavaScript templates
 * [moment](http://npmjs.com/moment) : Parse, validate, manipulate, and display dates
 
-###Install
+#### Install
 
 ````
 $ npm install
@@ -61,76 +63,75 @@ $ sudo mongod
 ```
 
 
-###App
+#### App
 ```
 $ npm start
 ```
 
-###Env vars
+#### Env vars
 
-You can set the following env vars to adjust your app behaviour :
+You can set the following env vars to adjust your app's behaviour:
 
 * `DEBUG` : Will filter the logs displayed in console. Check the [debug module](https://github.com/visionmedia/debug) documentation for details.
 * `DATABASE_URL` : URL of the mongoDB database. Defaults to _mongodb://localhost:27017/sigfox-callback_
 * `PORT`: the port your app will be listening to. Defaults to 34000
 
 
-##Test requests
+### Test requests
 
-###Check your dashboard
+#### Check your dashboard
 
-Access http://localhost:34000/ in your browser.
+Navigate to http://localhost:34000/ in your browser.
 
-Of course, there should be 0 message displayed 
+There should be 0 message displayed at the start.
 
-###POST request
+#### POST request
 
 ```
 $ curl -X POST -d "connect=anything" http://localhost:34000/sigfox
 ```
 
-You should get the following JSON response :
+You should get the following JSON response:
 ```
 {"result":"♡"}
 ```
 
-An entry will show up in your dashboard, with invalid data. This is because we didn't provide the full data structure of a SIGFOX message.  
+An entry will show up in your dashboard, with invalid data. This is because we didn't provide the full data structure of a Sigfox message.  
+
 If you want to emulate a SIGFOX message, try:  
 
 ```
 $ curl -X POST -d 'id=simulation&time=1500000000&station=future&data=d474' http://localhost:34000/sigfox
 ```
 
-A message from the future should now appear on your local dashboard
+A message from the future should now appear on your local dashboard.
 
-##Quick deploy on heroku
-
+### Quick deploy on heroku
 
 _Note:_ You can deploy this demo application wherever suited. Heroku is just a quickstart example.
 
-
-###One-click deploy
+#### One-Click Deployment
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/nicolsc/sigfox-callback-demo/tree/master)
 
-###The command line way 
+#### Using CLI (Command Line Interface)
 
 * Make sure you have installed the [Heroku Toolbelt](https://toolbelt.heroku.com/)
 * Create an application : `heroku apps:create {whatever name}`. Documentation [here](https://devcenter.heroku.com/articles/creating-apps)
 * Deploy your code : `$ git push heroku master`
 
-###Set up your env
+#### Set up your env
 * Add a [sandbox MongoLab add-on](https://elements.heroku.com/addons/mongolab#addon-docs) (free) : `$ heroku addons:add mongolab:sandbox`
 * Set the `DATABASE_URL`env var to the URL of your mongo lab db
 * `heroku config:get MONGOLAB_URI`
 * `$ heroku config:set DATABASE_URL={your mongolab URL}`
 
-All that remains to do is to set up your SIGFOX callback on [the SIGFOX backend](https://backend.sigfox.com)
+All that remains to do is to set up your Sigfox callback on [the Sigfox backend](https://backend.sigfox.com)
 
 
-###How to set up a SIGFOX callback
+#### How to set up a Sigfox callback
 
-* Log into your [SIGFOX backend](http://backend.sigfox.com) account
+* Log into your [Sigfox backend](http://backend.sigfox.com) account
 * In the _device type_ section, access to the device type of the object you want to track
 * In the sidebar, click on the [Callbacks](http://backend.sigfox.com/devictype/:key/callbacks) option
 * Click the _New_ button
