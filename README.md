@@ -1,6 +1,6 @@
 <p align="center"><img src ="http://www.sigfox.com/themes/custom/sigfox/images/logo-2016.svg" width="300"></p>
 
-## Sigfox node.js callback demo
+## Sigfox Node.js Callback Demo
 
 ### Purpose
 
