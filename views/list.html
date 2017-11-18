@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sigfox Callback demo</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+  </head>
+
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Callbacks history</span>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Date</th>
+                <th class="mdl-data-table__cell--non-numeric">Type</th>
+                <th>Device</th>
+                <th>Payload</th>
+                <th>Station Id</th>
+                <th>Rssi</th>
+                <th>Duplicate ?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each rows}}
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">{{date}}</td>
+                  <td class="mdl-data-table__cell--non-numeric">{{type}}</td>
+                  <td>{{device}}</td>
+                  <td>{{data}}</td>
+                  <td>{{stationId}}</td>
+                  <td>{{rssi}}</td>
+                  <td>{{#if duplicate}}✔{{/if}}</td>
+                </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

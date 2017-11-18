@@ -1,0 +1,29 @@
+{
+  "name": "sigfox-callback-demo",
+  "version": "2.0.0",
+  "description": "Sigfox callback demo, using Node.js & hapi. Log requests in a PostgreSQL database",
+  "keywords": "sigfox",
+  "main": "server.js",
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "hapi": "^16.6.2",
+    "moment": "^2.19.2",
+    "pg": "^7.4.0",
+    "vision": "^4.1.1"
+  },
+  "engines": {
+    "node": "8.9.1",
+    "npm": "5.5.1 "
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node postinstall.js",
+    "start": "node server.js"
+  },
+  "author": "Nicolas Lesconnec @nicolsc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolsc/sigfox-callback-demo"
+  },
+  "license": "ISC"
+}

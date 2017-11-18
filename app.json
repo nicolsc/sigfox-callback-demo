@@ -1,0 +1,7 @@
+{
+  "name": "Sigfox callback",
+  "description": "Sigfox callback demo, using Node.js & hapi. Log requests in a PostgreSQL database",
+  "repository": "https://github.com/nicolsc/sigfox-callback-demo",
+  "logo": "https://www.sigfox.com/themes/sigfox/logo.svg",
+  "keywords": ["sigfox", "callback", "iot"]
+}
