@@ -24,11 +24,6 @@ Before installing the app itself, check that the main dependencies are installed
 To install, the better is probably to use [nvm (Node version manager)](https://github.com/creationix/nvm) that will let you switch between version of Node.
 
 As of Nov 2017, the LTS version of Node.js is v8.2.1
-```
-$ curl https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
-$ nvm install v8.2.1
-$ nvm use v8.2.1
-```
 
 ##### PostgreSQL
 
@@ -41,14 +36,14 @@ Follow the instructions on the [PostgreSQL website](postgresql.org).
 
 
 * `DATABASE_URL` : URL of the PostgreSQL database. Ex `postgres://user:password@localhost/sigfox`
-* `PORT`: the port your app will be listening to. Defaults to 34000
+* `PORT`: the port your app will be listening to. Defaults to 8000
 
 Either set them in the env, or use a config.local.js file, that will be used to populate `process.env`
 
 File structure:
 	```
 	module.exports={
-	  DATABASE_URL: ''
+	  DATABASE_URL: 'postgres://user:password@localhost/sigfox'
 	};
 	```
 
@@ -77,11 +72,11 @@ $ curl -X POST http://localhost:8000/uplink -H "Content-Type:application/json" -
 ```
 
 An entry will show up in your dashboard.
-#### How to set up a Sigfox callback
+#### How to set up your Sigfox callback
 
 * Log into your [Sigfox backend](http://backend.sigfox.com) account
 * In the _device type_ section, access to the device type of the object you want to track
-* In the sidebar, click on the [Callbacks](http://backend.sigfox.com/devictype/:key/callbacks) option
+* In the sidebar, click on the [Callbacks](http://backend.sigfox.com/devicetype/:devicetypeid/callbacks) option
 * Click the _New_ button
 * Set your callback as following
   * Type: `DATA UPLINK`
@@ -91,3 +86,20 @@ An entry will show up in your dashboard.
 	* Content-Type : `application/json`
 	* Body : `{"device":"{device}", "data":"{data}", "station":"{station}", "rssi":"{rssi}", "duplicate":"{duplicate}"}`
   * Click _OK_
+
+
+![Callback configuration](./callback-configuration.png)
+
+### Easy deploy to Heroku
+
+If you have an [Heroku](http://heroku.com) account, you can easily deploy this demo application online:
+* Create a new application
+* Attach a PostgreSQL addon. This will populate the `DATABASE_URL` env var, pointing to your new database
+* Deploy the application & start it
+```
+	$ heroku apps:create
+	$ heroku addons:create heroku-postgresql:hobby-dev
+	$ git push heroku master
+	$ heroku ps:scale web=1
+	$ heroku open
+```
