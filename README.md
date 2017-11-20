@@ -135,3 +135,15 @@ If you have an [Heroku](http://heroku.com) account, you can easily deploy this d
 	$ heroku ps:scale web=1
 	$ heroku open
 ```
+
+### Nota bene
+
+This tutorial aims to help you discover the uplink and downlink capabilities.
+
+Please, be aware __messages will be duplicated__ in the PostgreSQL database as the message "data" is saved when both _uplink_ and _downlink_ callbacks are called.
+
+You could only use the __BIDIR__ callback which enables to:
+* save the uplink frame in a database (using the "data" parameter containing the payload)
+* send a downlink frame to a device by filtering the __"ack"__ boolean parameter (which tells if the device is asking for one)
+
+
