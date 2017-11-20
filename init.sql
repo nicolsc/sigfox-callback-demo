@@ -1,5 +1,5 @@
-drop table if exists callbacks;
-drop type if exists callback_type;
+/*drop table if exists callbacks;
+drop type if exists callback_type;*/
 CREATE TYPE callback_type AS ENUM ('data/uplink', 'data/downlink', 'service/geoloc');
 
 create table if not exists callbacks(
