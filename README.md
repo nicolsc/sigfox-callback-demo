@@ -8,9 +8,9 @@
 
 This is a [Node.js](http://nodejs.org) + [hapi](https://hapijs.com) application, with three routes:
 
-* GET / to display the dashboard
-* POST /uplink to log an uplink callback
-* [⚠️ WIP] `POST /downlink` to log a downlink request, and send a reply back to the device
+* `GET /` to display the dashboard
+* `POST /uplink` to log an uplink callback
+* `POST /downlink` to log a downlink request, and send a reply back to the device
 
 
 ### Installation
@@ -65,20 +65,30 @@ A post install script will init a `callbacks` database
 Navigate to http://localhost:8000/ in your browser.
 
 Table will be empty by default
-#### Emulate a callback
+#### Uplink callback
 
 ```
 $ curl -X POST http://localhost:8000/uplink -H "Content-Type:application/json" -d '{"device":"1234", "data":"0", "station":"0001", "rssi":null, "duplicate":false}'
 ```
 
-An entry will show up in your dashboard.
-#### How to set up your Sigfox callback
+#### Downlink callback
+```
+$ curl -X POST http://localhost:8000/downlink -H "Content-Type:application/json" -d '{"device":"1234", "data":"0", "station":"04E0", "rssi":-122, "duplicate":false}'
+```
+
+### Callback setup on Sigfox Cloud
 
 * Log into your [Sigfox backend](http://backend.sigfox.com) account
 * In the _device type_ section, access to the device type of the object you want to track
 * In the sidebar, click on the [Callbacks](http://backend.sigfox.com/devicetype/:devicetypeid/callbacks) option
 * Click the _New_ button
-* Set your callback as following
+* Choose "Custom callback"
+
+![Callback type selection](./screenshots/callback-type.png)
+
+#### Uplink
+
+Set your callback as following
   * Type: `DATA UPLINK`
   * Channel: `URL`
   * Url pattern :   `http://{your URL}/uplink`
@@ -88,7 +98,29 @@ An entry will show up in your dashboard.
   * Click _OK_
 
 
-![Callback configuration](./callback-configuration.png)
+![Uplink Callback configuration](./screenshots/uplink-configuration.png)
+
+#### Downlink
+Set your callback as following:
+
+  * Type: `DATA BIDIR`
+  * Channel: `URL`
+  * Url pattern :   `http://{your URL}/uplink`
+  * HTTP method: `POST`
+	* Content-Type : `application/json`
+	* Body : `{"device":"{device}", "data":"{data}", "station":"{station}", "rssi":"{rssi}", "duplicate":"{duplicate}"}`
+  * Click _OK_
+
+![Downlink Callback configuration](./screenshots/downlink-configuration.png)
+
+By default, new _downlink callbacks_ are inactive.  
+You need to explicitly activate them, by clicking on the empty disc in the _Downlink_ column
+
+![Downlink Enablement](./screenshots/downlink-enablement.png)
+![Downlink Activation](./screenshots/downlink-activation-popup.png)
+
+Once activated, your downlink callback will have a blue disk displayed in the _Downlink_ column:
+![Downlink Activation](./screenshots/downlink-active.png)
 
 ### Easy deploy to Heroku
 
