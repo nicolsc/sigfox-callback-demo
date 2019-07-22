@@ -23,7 +23,7 @@ Before installing the app itself, check that the main dependencies are installed
 
 To install, the better is probably to use [nvm (Node version manager)](https://github.com/creationix/nvm) that will let you switch between version of Node.
 
-As of Nov 2017, the LTS version of Node.js is v8.2.1
+As of July 2019, the LTS version of Node.js is v10.16.0
 
 ##### PostgreSQL
 
@@ -145,5 +145,3 @@ Please, be aware __messages will be duplicated__ in the PostgreSQL database as t
 You could only use the __BIDIR__ callback which enables to:
 * save the uplink frame in a database (using the "data" parameter containing the payload)
 * send a downlink frame to a device by filtering the __"ack"__ boolean parameter (which tells if the device is asking for one)
-
-
