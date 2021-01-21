@@ -5,7 +5,7 @@
   "keywords": "sigfox",
   "main": "server.js",
   "dependencies": {
-    "@hapi/hapi": "18.3.1",
+    "@hapi/hapi": "20.0.0",
     "handlebars": "4.5.3",
     "moment": "2.24.0",
     "pg": "7.11.0",
